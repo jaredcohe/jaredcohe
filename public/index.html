@@ -3,19 +3,99 @@
   <head>
     <title>jaredcohe</title>
     <meta charest="utf-8">
-    <link rel="stylesheet" href="stylesheets/stylesheet.css">
+    <meta content="Curated education tutorials syllabus lesson plans for teaching oneself self-taught" name="description" />
+    <link rel="stylesheet" href="stylesheets/stylesheet.css" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js" type="text/javascript"></script>
+    <script src="scripts/application.js" type="text/javascript"></script>
     <script>
       //alert("Testing Javascript");
     </script>
+    <script language="javascript" type="text/javascript">
+        function changeContent() {
+          document.getElementById("two_id").style.backgroundColor = "#990000"
+          document.getElementById("one_id").style.color = "#fff"
+          document.getElementById("whole").style.border = "thin black solid"
+          var textContent = document.getElementById("input_area").value;
+          console.log(textContent);
+          document.getElementById("change_me").innerHTML = "<h2>Changed content dynamically " + textContent;
+        }
+      </script>
+      <script language="javascript" type="text/javascript">
+        function ajaxRun() {
+          xmlhttp = new XMLHttpRequest();
+          xmlhttp.onreadystatechange = function() {
+            if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+              document.getElementById("add_here").innerHTML = xmlhttp.responseText;
+            } else
+            {
+              document.getElementById("add_here").innerHTML = "<strong>Waiting for data</strong>";
+            }
+          }
+          xmlhttp.open("GET", "/need_source_of_data", true);
+          xmlhttp.send();        
+        }
+      </script>
+      <script language="javascript" type="text/javascript">
+        var heightOfDiv;
+        var t;
+        
+        function shrun() {
+          heightOfDiv = document.getElementById("shdiv").offsetHeight;
+          console.log(heightOfDiv);
+          var freq = 1000/heightOfDiv;
+          t = setInterval("retract()", freq);
+          console.log(t);
+          //document.getElementById("shdiv").toggle;
+        }
+        
+        function retract() {
+          if(heightOfDiv>0) {
+            heightOfDiv = heightOfDiv - 1;
+            document.getElementById("shdiv").style.height = heightOfDiv + "px";
+            console.log(heightOfDiv);
+          } else
+          {
+            document.getElementById("shdiv").style.display = "none";
+            clearInterval(t);
+          }
+        }
+      </script>
+    
   </head>
 
   <body>
+
+    <a href="#" onclick="run_test(); return false;">Click me to run_test obtrusively</a>
+    <br />
+    <a href="#" id="run_me">Click me to run_test unobtrusively</a>
+
+    <input type="button" value="ajax example" onclick="ajaxRun()" />
+    <div id="add_here">
+      Ajax example pre
+    </div>
+
+    <br />
+    <input type="text" id="input_area">
+    <input type="button" id="change" onclick="changeContent()" value="change content" />
+
+    <div id="whole">
+      <h2 id="one_id">one more stuff</h2>
+      <p id="two_id">two stuff stuff</p>
+    </div>
+    
+    <div id="change_me">
+      content to change
+    </div>
+
+    <input type="button" value="sh button" onclick="shrun()" />
+    <div id="shdiv">
     <h1>jaredcohe page</h1>
     <p>jaredcohe stuff</p>
+    </div>
+
     <p><img src="images/profile.JPG" alt="profile image" /></p>
 
-    <h2>more stuff</h2>
-    <p>stuff stuff</p>
   </body>
 
 </html>
